@@ -1,0 +1,7 @@
+export {default as Home} from "./Home/Home"
+export {default as SignIn} from "./SignIn/SignIn"
+export {default as Blog} from "./Blog/Blog"
+export {default as Testimonial} from "./Testimonial/Testimonial"
+export {default as Contact} from "./Contact/Contact"
+export {default as Integrations} from "./Integrations/Integrations"
+export {default as Footer} from "./Footer/Footer"

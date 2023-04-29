@@ -1,38 +1,64 @@
-.App {
-  text-align: center;
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap');
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+html,
+body {
+  scroll-behavior: smooth;
+  overflow-x: hidden;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
+body{
+  background-color: #111826;
+}
+@font-face {
+  font-family: FSMeridian;
+  src: url(../public/FSMeridianTrial-Medium.otf);
+}
+span{
+  color: #1FC77E;
+}
+
+@font-face {
+  font-family: GeneralSans;
+  src: url(../public/GeneralSans-Medium.otf);
+}
+@font-face {
+  font-family: GeneralSansRegular;
+  src: url(../public/GeneralSans-Regular.otf);
+}
+@font-face {
+  font-family: 'Poppins', sans-serif;
+  src: url();
+}
+.heroCircle{
+  animation: word-anim 10s infinite linear;
+}
+@keyframes word-anim {
+  0% {
+    transform: translateX(0px) rotateZ(0deg);
+  }
+  
+  70% {
+    transform: translateX(70vw) rotateZ(360deg);
+  }
+  
+  100% {
+    transform: translateX(100vw) rotateZ(360deg);
   }
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
+.boldText{
+  font-weight: 600;
   color: white;
 }
 
-.App-link {
-  color: #61dafb;
-}
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.sign-in{
+  background-image: url("./assets/signInBg.png");
+  background-repeat: repeat;
+  height: 80vh;
+  /* width: 100vw; */
 }
