@@ -9,9 +9,15 @@ import "slick-carousel/slick/slick-theme.css";
 import "./Testimonial.css";
 
 const Testimonial = () => {
-  const {pathname} = useLocation()
+  const { pathname } = useLocation();
   // console.log(pathname);
-  if (pathname === "/signin" || pathname === "/blog" || pathname ===  "/contact") return null
+  if (
+    pathname === "/signin" ||
+    pathname === "/blog" ||
+    pathname === "/contact" ||
+    pathname === "/verification"
+  )
+    return null;
 
   const settings = {
     dots: true,

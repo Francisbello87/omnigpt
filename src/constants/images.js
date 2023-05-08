@@ -41,7 +41,12 @@ import integrationGithub from "../assets/integration-github.png";
 import integrationNotion from "../assets/integration-notion.png";
 import integrationSlack from "../assets/integration-slack.png";
 import signInLogo from "../assets/image-3.png";
+import ChatLogo from "../assets/Left.png";
 import signBtn from "../assets/Button.png";
+import ChatWhatsApp from "../assets/Outline - Application-chat.png";
+import Envelope from "../assets/Vector-email.png";
+import GPT from "../assets/GPT-logo.png";
+import WhatsappBtnVerify from "../assets/Outline - Application-whatsappBtn.png";
 
 export default {
   Logo,
@@ -87,5 +92,10 @@ export default {
   integrationNotion,
   integrationSlack,
   signInLogo,
-  signBtn
+  signBtn,
+  ChatLogo,
+  ChatWhatsApp,
+  Envelope,
+  WhatsappBtnVerify,
+  GPT
 };

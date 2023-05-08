@@ -26,7 +26,7 @@ const Navbar = () => {
     setMenuToggle(false);
   };
   const {pathname} = useLocation()
-  if(pathname === "/signin" ) return null
+  if(pathname === "/signin" || pathname ===  "/verification" ) return null
   return (
     <div className="py-4 lg:py-0 bg-bgColor h-16 lg:h-20 md:h-24 drop-shadow-lg lg:drop-shadow-sm text-white w-full px-5 md:px-16 lg:px-20 fixed z-20 bottom-0 top-0 ">
       {width > 768 ? (

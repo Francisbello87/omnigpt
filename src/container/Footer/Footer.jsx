@@ -4,9 +4,15 @@ import { images } from "../../constants";
 import { Link, useLocation } from "react-router-dom";
 
 const Footer = () => {
-  const {pathname} = useLocation()
+  const { pathname } = useLocation();
   // console.log(pathname);
-  if (pathname === "/signin" || pathname === "/blog" || pathname ===  "/contact") return null
+  if (
+    pathname === "/signin" ||
+    pathname === "/blog" ||
+    pathname === "/contact" ||
+    pathname === "/verification"
+  )
+    return null;
   return (
     <div className=" relative pt-40 md:px-16 px-5 bg-black mt-[182px] ">
       <div className="bg-coloredText w-[280px] lg:w-[80%] items-center md:w-[610px] -top-40 absolute  left-1/2 transform -translate-x-1/2  md:right-20 rounded-lg mt-20 flex flex-col px-4 py-9 md:pb-12 ">
@@ -72,7 +78,11 @@ const Footer = () => {
               />
             </Link>
           </div>
-          <motion.div whileInView={{opacity: [0, 1]}} transition={{duration: 0.8, ease: "easeInOut"}} className="text-white text-base ">
+          <motion.div
+            whileInView={{ opacity: [0, 1] }}
+            transition={{ duration: 0.8, ease: "easeInOut" }}
+            className="text-white text-base "
+          >
             <div className="">
               <p>Lorem Ipsum</p>
               <p className=" mt-5">Lorem Ipsum</p>
@@ -83,7 +93,10 @@ const Footer = () => {
               <p className=" mt-5">Lorem Ipsum</p>
             </div>
           </motion.div>
-          <motion.div whileInView={{opacity: [0, 1]}} transition={{duration: 0.8, ease: "easeInOut"}}>
+          <motion.div
+            whileInView={{ opacity: [0, 1] }}
+            transition={{ duration: 0.8, ease: "easeInOut" }}
+          >
             <motion.p
               whileInView={{ opacity: [0, 1] }}
               transition={{ duration: 0.85, ease: "easeOut" }}

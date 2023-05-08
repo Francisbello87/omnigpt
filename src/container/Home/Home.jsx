@@ -18,7 +18,7 @@ const Home = () => {
     };
   }, []);
   return (
-    <div className="mt-10 w-full md:w-full text-white">
+    <div className=" w-full md:w-full text-white px-5 md:px-16 mt-20 lg:mt-28 lg:px-20 ">
       {width > 1024 ? (
         // Desktop
         <div className="mt-[132px]">

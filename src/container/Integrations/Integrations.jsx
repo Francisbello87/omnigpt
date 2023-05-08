@@ -7,9 +7,15 @@ import { integrations } from "../../utils/data";
 const Integrations = () => {
   const { pathname } = useLocation();
   // console.log(pathname);
-  if (pathname === "/signin" || pathname === "/blog" || pathname ===  "/contact") return null
+  if (
+    pathname === "/signin" ||
+    pathname === "/blog" ||
+    pathname === "/contact" ||
+    pathname === "/verification"
+  )
+    return null;
   // else{
-  //   return 
+  //   return
   // };
 
   return (
