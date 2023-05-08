@@ -74,3 +74,7 @@ span{
   /* Reset all styles to their defaults */
   all: unset;
 }
+
+.chat-message.omnigpt{
+  background-color: #CCD6DE;
+}

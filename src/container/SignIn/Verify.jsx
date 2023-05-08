@@ -158,13 +158,27 @@ const Verify = () => {
         <div className="chatInterface bg-white flex-1 ml-[256px] w-[1184px] h-[50%] pb-16 mt-[71px] ">
           <div className=" h-[50%]">
             <div className="chat-log text-left  ">
-              <div className="chat-message omnigpt bg-[#CCD6DE] border-b-2 py-6 flex ">
-                <div className="chat-message-center flex max-w-[766px] ml-auto mr-auto">
+              <div className="chat-message omnigpt ">
+                <div className="chat-message-center max-w-[640px] ml-auto mr-auto py-10 flex">
+                  <div className="avatar  w-10 h-10">
+                    <img src={images.GPT} alt="ominiGPT Logo"/>
+                  </div>
+                  <div className="message px-10">I am an AI</div>
+                </div>
+              </div>
+              <div className="chat-message ">
+                <div className="chat-message-center max-w-[640px] ml-auto mr-auto py-10  flex">
+                  <div className="avatar bg-red-400 rounded-full w-10 h-10">
+                    Me
+                  </div>
+                  <div className="message px-10">Hello World</div>
+                </div>
+              </div>
+              {/* <div className="chat-message-center flex max-w-[766px] ml-auto mr-auto">
                   {chatLog.map((message, index) => (
                     <ChatMessage key={index} message={message} />
                   ))}
-                </div>
-              </div>
+                </div> */}
 
               {/* <div className="chat-message  border-b-2 py-6 flex ">
                 <div className="chat-message-center flex max-w-[766px] ml-auto mr-auto">

@@ -20,7 +20,8 @@ module.exports = {
         purpleColor: "#7F3DD2",
         inputColor: "#F7F7F8",
         shadowColor: "#2F4069",
-        chatColor: "#29CC6A"
+        chatColor: "#29CC6A",
+        omniGPTColor: "#CCD6DE",
       },
       width: {
         150: "150px",

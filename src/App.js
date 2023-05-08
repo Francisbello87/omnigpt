@@ -13,7 +13,7 @@ function App() {
       <AnimatePresence mode="wait">
         <AuthContextProvider>
           <Navbar />
-          <div >
+          <div>
             <AnimatedRoutes />
           </div>
           <Integrations />
