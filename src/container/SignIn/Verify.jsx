@@ -74,37 +74,9 @@ const Verify = () => {
   return (
     <div className="w-full verify ">
       <ChatInterfaceMenu/>
-      <div className="flex">
+      <div className="flex h-[90%]">
         <Sidebar/>
-        {/* <div className="sidebar  fixed z-10  bg-[#111826] h-[90vh] w-[256px] px-2 py-3 mt-[71px]">
-          <div className="flex items-center bg-[#212936] py-3 pl-3 rounded-md">
-            <motion.div whileTap={{ scale: 1.1 }}>
-              <BiSearch
-                onClick={handleClick}
-                className="text-white text-lg cursor-pointer"
-              />
-            </motion.div>
-            <input
-              ref={ref}
-              type="text"
-              name=""
-              id=""
-              placeholder="Search"
-              className="outline-none ml-2 bg-[#212936] caret-white"
-            />
-          </div>
-          <motion.div
-            whileTap={{ scale: 1.1 }}
-            className="text-white group flex items-center cursor-pointer active:bg-[#212936]  focus:outline-none focus:ring focus:ring-white hover:bg-[#343b48] bg-[#212936] mt-4 py-3 pl-3 rounded-md"
-          >
-            <div>
-              <BiPlus className="text-xl group-hover:text-coloredText" />
-            </div>
-            <p className="font-Poppins text-sm ml-2 group-hover:text-coloredText">
-              New Working Thread
-            </p>
-          </motion.div>
-        </div> */}
+       
         <div className="chatInterface bg-white flex-1  w-[1184px] h-[50%] pb-16  ">
           <div className=" h-[50%]">
             <div className="chat-log text-left  ">
@@ -114,8 +86,8 @@ const Verify = () => {
             </div>
           </div>
           <div className=" text-white h-[10vh]">
-            <div className=" fixed flex items-center justify-center bottom-0 h-[114px] w-[84.7%]">
-              <div className="bg-white ml ml-96 drop-shadow-lg w-[70%] flex  items-center  justify-between h-[72px] rounded-sm">
+            <div className=" absolute flex items-center justify-center left-56 bottom-0 h-[114px] w-[80.7%]">
+              <div className="bg-white ml  drop-shadow-lg w-[70%] flex  items-center  justify-between h-[72px] rounded-sm">
                 <div className="bg-white cursor-pointer  flex items-center pl-5 py-4 rounded-lg ">
                   <motion.img
                     whileTap={{ scale: 1.1 }}

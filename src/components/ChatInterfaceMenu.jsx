@@ -47,7 +47,7 @@ const ChatInterfaceMenu = () => {
   }, []);
 
   return (
-    <div className="text-coloredText bg-bgColor h-[70px]">
+    <div className="text-coloredText relative bg-bgColor h-[70px]">
       {width > 768 ? (
         <div className="flex fixed items-center drop-shadow-md shadow-sm shadow-slate-200 justify-between w-full lg:h-[70px] bg-white px-5  ">
           <div>
@@ -117,8 +117,8 @@ const ChatInterfaceMenu = () => {
           )}
         </div>
       ) : (
-        <div className="flex items-center justify-between px-3 text-gray-200">
-          <div className="rounded-full w-12 h-12  flex items-center justify-center bg-coloredText">
+        <div className="flex items-center justify-between px-3 py-3 text-gray-200">
+          <div className="rounded-full w-12 h-12 flex items-center justify-center bg-coloredText">
             {menuToggle ? (
               <motion.img
                 onClick={closeMenu}
@@ -143,6 +143,9 @@ const ChatInterfaceMenu = () => {
           <p className="font-Poppins">+</p>
         </div>
       )}
+      <div className="bg-bgColor absolute top-[69px] w-[90%] h-[650px]">
+
+      </div>
     </div>
   );
 };
