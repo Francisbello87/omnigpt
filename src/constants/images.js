@@ -46,6 +46,7 @@ import signBtn from "../assets/Button.png";
 import ChatWhatsApp from "../assets/Outline - Application-chat.png";
 import Envelope from "../assets/Vector-email.png";
 import GPT from "../assets/GPT-logo.png";
+import CHATICON from "../assets/Outline - Application-chatIcon.png";
 import WhatsappBtnVerify from "../assets/Outline - Application-whatsappBtn.png";
 
 export default {
@@ -97,5 +98,6 @@ export default {
   ChatWhatsApp,
   Envelope,
   WhatsappBtnVerify,
-  GPT
+  GPT,
+  CHATICON,
 };
