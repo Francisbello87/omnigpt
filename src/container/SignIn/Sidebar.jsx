@@ -1,7 +1,10 @@
 import React, { useRef, useState } from "react";
 import { motion } from "framer-motion";
 import { BiSearch, BiPlus } from "react-icons/bi";
-import { MdOutlineKeyboardArrowRight } from "react-icons/md";
+import {
+  MdOutlineKeyboardArrowRight,
+  MdOutlineKeyboardArrowLeft,
+} from "react-icons/md";
 import { images } from "../../constants";
 
 const Sidebar = () => {
@@ -9,8 +12,12 @@ const Sidebar = () => {
 
   const handleClick = () => {
     ref.current.focus();
-    setIsActive(true);
+    
   };
+
+  const handleSidebarOpen = () => {
+    setIsActive(true);
+  }
   const ref = useRef(null);
 
   return (
@@ -18,7 +25,7 @@ const Sidebar = () => {
       <div className="sidebar  fixed z-10  bg-[#111826] h-full pt-2 px-2    ">
         <div className="relative h-full">
           {isActive ? (
-            <motion.div  className="w-[256px]">
+            <motion.div className="w-[256px]">
               <div className="flex items-center bg-[#212936] py-3 pl-3 rounded-md">
                 <motion.div whileTap={{ scale: 1.1 }}>
                   <BiSearch
@@ -75,9 +82,15 @@ const Sidebar = () => {
             </div>
           )}
 
-          <div className="bg-[#111826] absolute left-[88px] text-white text-lg rounded-br-md rounded-tr-md  top-1/2  transform -translate-x-1/2 -translate-y-1/2 flex items-center justify-center w-[18px] h-12">
-            <MdOutlineKeyboardArrowRight />
-          </div>
+          {isActive ? (
+            <motion.div onClick={handleSidebarOpen} className="bg-[#111826] cursor-pointer absolute left-[273px] text-white text-lg rounded-br-md rounded-tr-md  top-1/2  transform -translate-x-1/2 -translate-y-1/2 flex items-center justify-center w-[18px] h-12">
+              <MdOutlineKeyboardArrowLeft className="cursor-pointer" />
+            </motion.div>
+          ) : (
+            <motion.div className="bg-[#111826] absolute z-10 left-[97px] text-white text-lg rounded-br-md rounded-tr-md  top-1/2  transform -translate-x-1/2 -translate-y-1/2 flex items-center justify-center w-[18px] h-12">
+              <MdOutlineKeyboardArrowRight />
+            </motion.div>
+          )}
         </div>
       </div>
     </div>
