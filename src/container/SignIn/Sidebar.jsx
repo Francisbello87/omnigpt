@@ -8,7 +8,7 @@ import {
 import { images } from "../../constants";
 
 const Sidebar = () => {
-  const [isActive, setIsActive] = useState(true);
+  const [isActive, setIsActive] = useState(false);
 
   const handleClick = () => {
     ref.current.focus();
@@ -17,6 +17,9 @@ const Sidebar = () => {
 
   const handleSidebarOpen = () => {
     setIsActive(true);
+  }
+  const handleSidebarclose = () => {
+    setIsActive(false);
   }
   const ref = useRef(null);
 
@@ -83,12 +86,12 @@ const Sidebar = () => {
           )}
 
           {isActive ? (
-            <motion.div onClick={handleSidebarOpen} className="bg-[#111826] cursor-pointer absolute left-[273px] text-white text-lg rounded-br-md rounded-tr-md  top-1/2  transform -translate-x-1/2 -translate-y-1/2 flex items-center justify-center w-[18px] h-12">
-              <MdOutlineKeyboardArrowLeft className="cursor-pointer" />
+            <motion.div  className="bg-[#111826] cursor-pointer z-10 absolute left-[273px] text-white text-lg rounded-br-md rounded-tr-md  top-1/2  transform -translate-x-1/2 -translate-y-1/2 flex items-center justify-center w-[18px] h-12">
+              <MdOutlineKeyboardArrowLeft onClick={handleSidebarclose} className="cursor-pointer" />
             </motion.div>
           ) : (
-            <motion.div className="bg-[#111826] absolute z-10 left-[97px] text-white text-lg rounded-br-md rounded-tr-md  top-1/2  transform -translate-x-1/2 -translate-y-1/2 flex items-center justify-center w-[18px] h-12">
-              <MdOutlineKeyboardArrowRight />
+            <motion.div  className="bg-[#111826] absolute z-10 left-[97px] text-white text-lg rounded-br-md rounded-tr-md  top-1/2  transform -translate-x-1/2 -translate-y-1/2 flex items-center justify-center w-[18px] h-12">
+              <MdOutlineKeyboardArrowRight onClick={handleSidebarOpen}  className="cursor-pointer" />
             </motion.div>
           )}
         </div>
