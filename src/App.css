@@ -89,3 +89,30 @@ span{
 .chat-message .chat-message-center{
   max-width: 766px;
 }
+
+.mainStyle {
+  /* background-color: #111826; */
+   background-color: white;
+  position: absolute;
+  top: 20px;
+  width: 90%;
+  height: 650px;
+}
+
+.openAnimation {
+  animation: open-menu .4s linear forwards;
+}
+
+.closeAnimation {
+  animation: close-menu .4s linear forwards;
+}
+
+@keyframes open-menu {
+  0% {width: 0;} /*You can use animation what do You need*/
+  100% {width: 80%;}
+}
+
+@keyframes close-menu {
+  0% {width: 80%;}
+  100% {width: 0;}
+}

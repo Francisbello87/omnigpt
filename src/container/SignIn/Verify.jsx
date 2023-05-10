@@ -1,4 +1,4 @@
-import React, { useState, useRef } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import { motion } from "framer-motion";
 import { images } from "../../constants";
 import { UserAuth } from "../../context/AuthContext";
@@ -12,6 +12,7 @@ const Verify = () => {
   const [account, setAccount] = useState(false);
   const [isActive, setIsActive] = useState(false);
   const [input, setInput] = useState("");
+  const [width, setWidth] = useState(window.innerWidth);
   const [chatLog, setChatLog] = useState([
     {
       user: "gpt",
@@ -39,7 +40,13 @@ const Verify = () => {
   const handleAccountBtn = () => {
     setAccount(false);
   };
-
+  useEffect(() => {
+    const handleResize = () => setWidth(window.innerWidth);
+    window.addEventListener("resize", handleResize);
+    return () => {
+      window.removeEventListener("resize", handleResize);
+    };
+  }, []);
   const handleSubmit = async (e) => {
     e.preventDefault();
     setChatLog([...chatLog, { user: "me", message: `${input}` }]);
@@ -48,15 +55,14 @@ const Verify = () => {
     const response = await fetch("http://localhost:3080/", {
       method: "POST",
       header: {
-        "Content-Type": "application/json"
+        "Content-Type": "application/json",
       },
       body: JSON.stringify({
-        message: chatLog.map((message) => message.message).
-        join("")
-      })
-    })
-    const data = await response.json()
-    setChatLog([...chatLog, {user: "gpt", message: `${data.message}`}])
+        message: chatLog.map((message) => message.message).join(""),
+      }),
+    });
+    const data = await response.json();
+    setChatLog([...chatLog, { user: "gpt", message: `${data.message}` }]);
     console.log(data.message);
   };
   const handleSignOut = async () => {
@@ -73,22 +79,61 @@ const Verify = () => {
   };
   return (
     <div className="w-full verify ">
-      <ChatInterfaceMenu/>
+      <ChatInterfaceMenu />
       <div className="flex h-[90%]">
-        <Sidebar/>
-       
-        <div className="chatInterface bg-white flex-1  w-[1184px] h-[50%] pb-16  ">
-          <div className=" h-[50%]">
-            <div className="chat-log text-left  ">
+        <Sidebar />
+        <div className="chatInterface bg-white flex-1 w[70%] lg:w-[1184px] pb-16  ">
+          <div className=" h-[80vh]  overflow-scroll">
+            <div className="chat-log text-left max-w-[766px]  ">
               {chatLog.map((message, index) => (
                 <ChatMessage key={index} message={message} />
               ))}
             </div>
           </div>
-          <div className=" text-white h-[10vh]">
-            <div className=" absolute flex items-center justify-center left-56 bottom-0 h-[114px] w-[80.7%]">
-              <div className="bg-white ml  drop-shadow-lg w-[70%] flex  items-center  justify-between h-[72px] rounded-sm">
-                <div className="bg-white cursor-pointer  flex items-center pl-5 py-4 rounded-lg ">
+          <div className=" text-white h-[10vh] py-6">
+            {width > 768 ? (
+              <div className=" absolute desktop flex items-center justify-center left-56 bottom-0 h-[114px] w-[80.7%]">
+                <div className="bg-white ml  drop-shadow-lg w-[70%] flex  items-center  justify-between h-[72px] rounded-sm">
+                  <div className="bg-white cursor-pointer  flex items-center pl-5 py-4 rounded-lg ">
+                    <motion.img
+                      whileTap={{ scale: 1.1 }}
+                      transition={{ duration: 0.3 }}
+                      className="pr-5 h-5"
+                      src={images.exportBtn}
+                      alt=""
+                    />
+                    <motion.img
+                      whileTap={{ scale: 1.1 }}
+                      transition={{ duration: 0.3 }}
+                      className="pr-5 w- h-5"
+                      src={images.MicBtn}
+                      alt=""
+                    />
+                  </div>
+                  <form className="w-[100%]" onSubmit={handleSubmit}>
+                    <input
+                      type="text"
+                      value={input}
+                      onChange={(e) => setInput(e.target.value)}
+                      className="w-[100%] bg-[#F7F7F8] text-black py-2 outline-none placeholder-[#8F9FB2] font-Poppins text-sm caret-coloredText"
+                      placeholder="Send a message..."
+                    />
+                  </form>
+
+                  <div className="bg-white cursor-pointer items-center  outline-none flex pl-5  rounded-lg ">
+                    <motion.img
+                      whileTap={{ scale: 1.1 }}
+                      transition={{ duration: 0.3 }}
+                      className="pr-5 h-5"
+                      src={images.sendBtn}
+                      alt=""
+                    />
+                  </div>
+                </div>
+              </div>
+            ) : (
+              <div className="mobile flex items-center">
+                <div className="bg-white cursor-pointer flex items-center pl-5 py-2">
                   <motion.img
                     whileTap={{ scale: 1.1 }}
                     transition={{ duration: 0.3 }}
@@ -104,17 +149,17 @@ const Verify = () => {
                     alt=""
                   />
                 </div>
-                <form className="w-[100%]" onSubmit={handleSubmit}>
+                <form className="w-[70%]" onSubmit={handleSubmit}>
                   <input
                     type="text"
                     value={input}
                     onChange={(e) => setInput(e.target.value)}
-                    className="w-[100%] bg-[#F7F7F8] text-black py-2 outline-none placeholder-[#8F9FB2] font-Poppins text-sm caret-coloredText"
+                    className="w-[100%] bg-[#F7F7F8] text-black py-2 pl-1 outline-none placeholder-[#8F9FB2] font-Poppins text-sm caret-coloredText"
                     placeholder="Send a message..."
                   />
                 </form>
 
-                <div className="bg-white cursor-pointer items-center  outline-none flex pl-5  rounded-lg ">
+                <button onClick={handleSubmit} className="bg-white cursor-pointer items-center rounded-br-none rounded-tr-none  py-2 outline-none flex pl-5 ">
                   <motion.img
                     whileTap={{ scale: 1.1 }}
                     transition={{ duration: 0.3 }}
@@ -122,9 +167,9 @@ const Verify = () => {
                     src={images.sendBtn}
                     alt=""
                   />
-                </div>
+                </button>
               </div>
-            </div>
+            )}
           </div>
         </div>
       </div>
@@ -191,7 +236,7 @@ const ChatMessage = ({ message }) => {
         message.user === "gpt" && "omnigpt"
       }  border-b-2 py-6 flex "`}
     >
-      <div className="chat-message-center flex max-w-[766px] ml-auto mr-auto">
+      <div className="chat-message-center flex justify-between lg:max-w-[766px] ml-auto mr-auto">
         <div
           className={`avatar ${
             message.user === "gpt" && "omnigpt"
@@ -203,8 +248,8 @@ const ChatMessage = ({ message }) => {
             className="user-profile-img"
           />
         </div>
-        <div className="message ">
-          <p className="max-w-[700px] font-Poppins text-base">
+        <div className="message max-w-[90%] flex-1 ">
+          <p className="lg:max-w-[700px] font-Poppins text-base">
             {message.message}
           </p>
         </div>

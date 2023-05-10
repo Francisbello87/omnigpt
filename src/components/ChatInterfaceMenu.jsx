@@ -3,6 +3,7 @@ import { motion } from "framer-motion";
 import { images } from "../constants";
 import { UserAuth } from "../context/AuthContext";
 import { RiArrowDropDownLine, RiArrowDropUpLine } from "react-icons/ri";
+import { AiOutlineMenu, AiOutlineClose } from "react-icons/ai";
 
 const ChatInterfaceMenu = () => {
   const { user, logOut, googleSignIn } = UserAuth();
@@ -10,9 +11,10 @@ const ChatInterfaceMenu = () => {
   const [menuToggle, setMenuToggle] = useState(false);
   const [isMenu, setIsMenu] = useState(false);
   const [width, setWidth] = useState(window.innerWidth);
+  const [isMobileMenu, setIsMobileMenu] = useState(false);
 
   const handleAccount = () => {
-    setAccount(true);
+    setAccount(!account);
   };
   const handleAccountClose = () => {
     setAccount(false);
@@ -29,13 +31,22 @@ const ChatInterfaceMenu = () => {
     setAccount(false);
   };
 
+  const variants = {
+    start: { x: [-100, 0], opacity: [0, 1] },
+    transition: { duration: 0.5 },
+    end: { opacity: [0, 1] },
+    transition: { duration: 0.5 },
+  };
   const mobileMenu = () => {
     setIsMenu(!isMenu);
     setMenuToggle(true);
+    setIsMobileMenu(true);
   };
   const closeMenu = () => {
     setIsMenu(false);
     setMenuToggle(false);
+    setIsMobileMenu(!isMobileMenu);
+    setAccount(false);
   };
 
   useEffect(() => {
@@ -118,34 +129,101 @@ const ChatInterfaceMenu = () => {
         </div>
       ) : (
         <div className="flex items-center justify-between px-3 py-3 text-gray-200">
-          <div className="rounded-full w-12 h-12 flex items-center justify-center bg-coloredText">
+          <div className="rounded-full w-12 h-12 flex items-center justify-center ">
             {menuToggle ? (
               <motion.img
                 onClick={closeMenu}
                 whileTap={{ scale: 1.1 }}
                 transition={{ duration: 0.85, ease: "easeOut" }}
-                className=" h-5 w-5 "
+                className=" h-5 w-5 hidden "
                 src={images.MenuClose}
                 alt="Menu Close Button"
               />
             ) : (
-              <motion.img
-                className="h-8 w-8"
+              <AiOutlineMenu
+                className="text-2xl text-gray-300"
                 onClick={mobileMenu}
-                transition={{ duration: 0.85, ease: "easeOut" }}
-                whileTap={{ scale: 1.1 }}
-                src={images.MenuOpen}
-                alt="Menu Button"
               />
             )}
           </div>
-          <p className="font-Poppins">New chat</p>
+          <p className="font-Poppins font-normal">New chat</p>
           <p className="font-Poppins">+</p>
         </div>
       )}
-      <div className="bg-bgColor absolute top-[69px] w-[90%] h-[650px]">
+      {isMobileMenu && (
+        <motion.div
+          variants={variants}
+          animate={isMobileMenu ? "start" : "end"}
+          className={
+            isMobileMenu ? "mainStyle open-menu" : "mainStyle close-menu"
+          }
+        >
+          <div>
+            <motion.button
+            whileTap={{scale: 1.1}}
+              onClick={closeMenu}
+              className="absolute bg-bgColor border-slate-200 cursor-pointer focus:outline-none focus:ring focus:ring-gray-200 p-1 text-2xl text-gray-300 top-0 -right-8"
+            >
+              <AiOutlineClose />
+            </motion.button>
+          </div>
+          <div className="bg-red-500 w-full h-[80%] overflow-scroll p-3"></div>
+          <div className="bg-bgColor border-t w-full h-[20%] py-4 px-5 relative flex items-center justify-center flex-col">
+            <button className="flex items-center bg-chatColor bg-opacity-30 px-3 py-2 border-solid text-chatColor rounded-md hover:bg-opacity-40 justify-center">
+              <img
+                src={images.ChatWhatsApp}
+                alt="WhatsApp icon"
+                className="mr-1"
+              />{" "}
+              Connect to WhatsApp
+            </button>
+            <div
+              onClick={handleAccount}
+              className="flex items-center px-4 py-2 mt-3 cursor-pointer focus:outline focus:ring focus:ring-gray-200  bg-gray-600 text-xs h-8 rounded w-[70%] flex-1 text-white"
+            >
+              <div>
+                <img
+                  className="rounded-full w-[25px] h-[25px]"
+                  src={user?.photoURL}
+                  alt=""
+                />
+              </div>
+              <div className="flex items-center justify-between">
+                <p className="font-Poppins text-xs ml-[10px] mr-12">
+                  {user?.displayName}
+                </p>
+                <p className="text-gray-300">...</p>
+              </div>
 
-      </div>
+              {account ? (
+                <motion.div
+                  initial={{ opacity: 0, scale: 0.6 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  exit={{ opacity: 0, scale: 0.6 }}
+                  className="bg-white w-full h-[80px] font-Poppins text-sm  absolute left-0 -top-20 px-3 py-4 cursor-pointer drop-shadow-md rounded-md rounded-bl-none rounded-br-none"
+                >
+                  <motion.p
+                    whileTap={{ scale: 1.1 }}
+                    onClick={handleAccountBtn}
+                    className=" font-semibold text-black mb-2 hover:drop-shadow-lg   hover:text-coloredText"
+                  >
+                    Account Settings
+                  </motion.p>
+                  <motion.p
+                    whileTap={{ scale: 1.1 }}
+                    onClick={handleSignOut}
+                    className=" font-normal text-gray-400 hover:text-gray-500 hover:drop-shadow-lg   "
+                  >
+                    Sign Out
+                  </motion.p>
+                </motion.div>
+              ) : (
+                <></>
+              )}
+            </div>
+          </div>
+        </motion.div>
+      )}
     </div>
   );
 };

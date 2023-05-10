@@ -28,7 +28,7 @@ const Sidebar = () => {
       initial={{ opacity: 0, x: -100 }}
       animate={{ opacity: 1, x: 0 }}
       exit={{ opacity: 0, x: 0 }}
-      className="side h-full hidden bg-[#111826] relative"
+      className="side h-full hidden lg:block bg-[#111826] relative"
     >
       {isActive ? (
         <motion.div
