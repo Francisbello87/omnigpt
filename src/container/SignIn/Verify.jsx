@@ -16,12 +16,14 @@ const Verify = () => {
   const [chatLog, setChatLog] = useState([
     {
       user: "gpt",
-      message: "How can I help you today?",
+      message:
+        "Welcome to OmniGPT! We're excited to have you here. Start by typing anything in the chat box and let's get the conversation started. Our AI-powered platform is here to help you communicate effortlessly and effectively across multiple channels. Don't hesitate to reach out if you have any questions or feedback. Also, don't forget that you can connect to your WhatsApp number anytime by clicking on the 'Connect to WhatsApp' button in the top navigation bar. Happy chatting!",
     },
     {
       user: "me",
       message: "How can I help you today?",
     },
+   
   ]);
 
   const { user, logOut, googleSignIn } = UserAuth();
@@ -47,6 +49,7 @@ const Verify = () => {
       window.removeEventListener("resize", handleResize);
     };
   }, []);
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     setChatLog([...chatLog, { user: "me", message: `${input}` }]);
@@ -83,8 +86,8 @@ const Verify = () => {
       <div className="flex h-[90%]">
         <Sidebar />
         <div className="chatInterface bg-white flex-1 w[70%] lg:w-[1184px] pb-16  ">
-          <div className=" h-[80vh]  overflow-scroll">
-            <div className="chat-log text-left max-w-[766px]  ">
+          <div className=" h-[80vh]  overflow-y-scroll scrollbar-none">
+            <div className="chat-log text-left">
               {chatLog.map((message, index) => (
                 <ChatMessage key={index} message={message} />
               ))}
@@ -159,7 +162,10 @@ const Verify = () => {
                   />
                 </form>
 
-                <button onClick={handleSubmit} className="bg-white cursor-pointer items-center rounded-br-none rounded-tr-none  py-2 outline-none flex pl-5 ">
+                <button
+                  onClick={handleSubmit}
+                  className="bg-white cursor-pointer items-center rounded-br-none rounded-tr-none  py-2 outline-none flex pl-5 "
+                >
                   <motion.img
                     whileTap={{ scale: 1.1 }}
                     transition={{ duration: 0.3 }}
@@ -232,11 +238,9 @@ const ChatMessage = ({ message }) => {
   const { user, logOut, googleSignIn } = UserAuth();
   return (
     <div
-      className={`chat-message ${
-        message.user === "gpt" && "omnigpt"
-      }  border-b-2 py-6 flex "`}
+      className={`chat-message ${message.user === "gpt" && "omnigpt"} py-6 "`}
     >
-      <div className="chat-message-center flex justify-between lg:max-w-[766px] ml-auto mr-auto">
+      <div className="chat-message-center flex justify-between lg:max-w-[766px] px-4 ml-auto mr-auto">
         <div
           className={`avatar ${
             message.user === "gpt" && "omnigpt"

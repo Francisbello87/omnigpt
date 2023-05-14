@@ -196,7 +196,7 @@ const Home = () => {
             </motion.div>
           </motion.div>
           <div className="mt-32 flex gap-9 items-center justify-center">
-            <div className="flex flex-1 relative items-center justify-center mt-14">
+            <div className="flex flex-1 relative max-w-[632px] items-center justify-center mt-14">
               <motion.img
                 className="w-[321px] h-[655px]"
                 whileInView={{ opacity: [0, 1] }}

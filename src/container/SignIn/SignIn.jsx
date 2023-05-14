@@ -3,7 +3,7 @@ import { motion } from "framer-motion";
 import { images } from "../../constants";
 import { FaRegEnvelope } from "react-icons/fa";
 import { UserAuth } from "../../context/AuthContext";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 import {
   isSignInWithEmailLink,
   sendSignInLinkToEmail,
@@ -21,17 +21,27 @@ import { useEffect } from "react";
 const SignIn = () => {
   const [email, setEmail] = useState("");
   const [sent, setSent] = useState(false);
-  const {user, logout, googleSignIn } = UserAuth();
+  const { user, logout, googleSignIn, googleSignInMobile } = UserAuth();
   const navigate = useNavigate();
-  const [ loading, error] = useAuthState(auth);
+  const location = useLocation();
+  const { search } = location;
+  const [users, loading, error] = useAuthState(auth);
   const [loginLoading, setLoginLoading] = useState(false);
   const [loginError, setLoginError] = useState("");
+  const [width, setWidth] = useState(window.innerWidth);
 
   const [infoMsg, setInfoMsg] = useState("");
 
   const handleGoogleSignIn = async () => {
     try {
       await googleSignIn();
+    } catch (error) {
+      console.log(error);
+    }
+  };
+  const handleGoogleSignInMobile = async () => {
+    try {
+      await googleSignInMobile();
     } catch (error) {
       console.log(error);
     }
@@ -47,36 +57,46 @@ const SignIn = () => {
   };
 
   useEffect(() => {
-    if(user != null){
-      navigate('/verification')
+    let email = localStorage.getItem("email");
+    if (user != null) {
+      navigate("/verification");
     }
-  }, [user])
-  
-  
+  }, [user]);
+
   useEffect(() => {
-    if (user) {
-      navigate("/");
-    } else {
-      if (isSignInWithEmailLink(auth, window.location.href)) {
-        let email = localStorage.getItem("email");
-        if (!email) {
-          email = window.prompt("Please provide your email");
-        }
-        signInWithEmailLink(
-          auth,
-          localStorage.getItem("email"),
-          window.location.href
-        ).then((result) => {
-          localStorage.removeItem('email')
-          navigate('/')
-        }).catch ((err) => {
-          console.log(err);
-        })
-      }else{
-        console.log("Sho da mo");
-      }
-    }
+    const handleResize = () => setWidth(window.innerWidth);
+    window.addEventListener("resize", handleResize);
+    return () => {
+      window.removeEventListener("resize", handleResize);
+    };
   }, []);
+
+  // useEffect(() => {
+  //   if (user) {
+  //     navigate("/");
+  //   } else {
+  //     if (isSignInWithEmailLink(auth, window.location.href)) {
+  //       let email = localStorage.getItem("email");
+  //       if (!email) {
+  //         email = window.prompt("Please provide your email");
+  //       }
+  //       signInWithEmailLink(
+  //         auth,
+  //         localStorage.getItem("email"),
+  //         window.location.href
+  //       )
+  //         .then((result) => {
+  //           localStorage.removeItem("email");
+  //           navigate("/");
+  //         })
+  //         .catch((err) => {
+  //           console.log(err);
+  //         });
+  //     } else {
+  //       console.log("Sho da mo");
+  //     }
+  //   }
+  // }, []);
 
   const handleSignIn = (e) => {
     e.preventDefault();
@@ -89,7 +109,7 @@ const SignIn = () => {
         localStorage.setItem("email", email);
         setLoginLoading(false);
         setLoginError("");
-        setInfoMsg("We have sent you an email with a link to sign in.")
+        setInfoMsg("We have sent you an email with a link to sign in.");
       })
       .catch((err) => {
         setLoginLoading(false);
@@ -167,19 +187,31 @@ const SignIn = () => {
                   <span className="text-white">Sign in</span>
                 )}
               </motion.button>
+              <div className="text-coloredText">{infoMsg}</div>
+
               <div className="flex items-center mb-4 font-Poppins text-xs justify-between">
                 <hr className="w-[30%]" />
                 <p className="text-gray-400">or connect with</p>
                 <hr className="w-[30%]" />
               </div>
               <motion.div className="flex items-center justify-center cursor-pointer">
-                <motion.img
-                  whileTap={{ scale: 1.1 }}
-                  onClick={handleGoogleSignIn}
-                  className="w-[120px] h-12"
-                  src={images.signBtn}
-                  alt="Google Sign in Button"
-                />
+                {width > 768 ? (
+                  <motion.img
+                    whileTap={{ scale: 1.1 }}
+                    onClick={handleGoogleSignIn}
+                    className="w-[120px] h-12"
+                    src={images.signBtn}
+                    alt="Google Sign in Button"
+                  />
+                ) : (
+                  <motion.img
+                    whileTap={{ scale: 1.1 }}
+                    onClick={handleGoogleSignInMobile}
+                    className="w-[120px] h-12"
+                    src={images.signBtn}
+                    alt="Google Sign in Button"
+                  />
+                )}
               </motion.div>
             </form>
           </div>

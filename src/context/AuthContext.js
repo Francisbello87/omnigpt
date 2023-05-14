@@ -14,11 +14,16 @@ const AuthContext = createContext();
 
 export const AuthContextProvider = ({ children }) => {
   const [user, setUser] = useState({});
+  // const [userEmail, setUserEmail] = useState(localStorage.getItem("email"))
+  const provider = new GoogleAuthProvider();
+  // let email = localStorage.getItem("email");
 
-  
   const googleSignIn = () => {
-    const provider = new GoogleAuthProvider();
     signInWithPopup(auth, provider);
+  };
+
+  const googleSignInMobile = () => {
+    signInWithRedirect(auth, provider);
   };
 
   const logOut = () => {
@@ -26,9 +31,11 @@ export const AuthContextProvider = ({ children }) => {
   };
 
   useEffect(() => {
+    
     const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
       setUser(currentUser);
       console.log("User", currentUser);
+      // console.log("Email", userEmail);
     });
     return () => {
       unsubscribe();
@@ -36,7 +43,7 @@ export const AuthContextProvider = ({ children }) => {
   }, []);
 
   return (
-    <AuthContext.Provider value={{ googleSignIn, logOut, user }}>
+    <AuthContext.Provider value={{ googleSignIn, logOut, googleSignInMobile, user }}>
       {children}
     </AuthContext.Provider>
   );

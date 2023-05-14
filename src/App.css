@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap");
 * {
   margin: 0;
   padding: 0;
@@ -10,16 +10,18 @@ body {
   scroll-behavior: smooth;
   overflow-x: hidden;
 }
-
-body{
+html::-webkit-scrollbar {
+  display: none;
+}
+body {
   background-color: #111826;
 }
 @font-face {
   font-family: FSMeridian;
   src: url(../public/FSMeridianTrial-Medium.otf);
 }
-span{
-  color: #1FC77E;
+span {
+  color: #1fc77e;
 }
 
 @font-face {
@@ -31,38 +33,38 @@ span{
   src: url(../public/GeneralSans-Regular.otf);
 }
 @font-face {
-  font-family: 'Poppins', sans-serif;
+  font-family: "Poppins", sans-serif;
   src: url();
 }
-.heroCircle{
+.heroCircle {
   animation: word-anim 10s infinite linear;
 }
 @keyframes word-anim {
   0% {
     transform: translateX(0px) rotateZ(0deg);
   }
-  
+
   70% {
     transform: translateX(70vw) rotateZ(360deg);
   }
-  
+
   100% {
     transform: translateX(100vw) rotateZ(360deg);
   }
 }
 
-.boldText{
+.boldText {
   font-weight: 600;
   color: white;
 }
 
-.sign-in{
+.sign-in {
   background-image: url("./assets/signInBg.png");
   background-repeat: repeat;
   height: 80vh;
   /* width: 100vw; */
 }
-.verify{
+.verify {
   width: 100%;
   height: 100vh;
   padding: 0;
@@ -75,44 +77,56 @@ span{
   all: unset;
 }
 
-.chat-message.omnigpt{
-  background-color: #CCD6DE;
+.chat-message.omnigpt {
+  background-color: #ccd6de;
 }
-.chat-message .chat-message-center .message{
-  margin-left: 20px;
-}
-.chat-message .chat-message-center .avatar{
+.avatar {
   width: 40px;
   height: 40px;
 }
+.chat-message .chat-message-center .message {
+  margin-left: 20px;
+}
+/* .chat-message .chat-message-center .avatar{
+  width: 40px;
+  height: 40px;
+} */
 
-.chat-message .chat-message-center{
+.chat-message .chat-message-center {
   max-width: 766px;
 }
 
 .mainStyle {
   /* background-color: #111826; */
-   background-color: white;
+  background-color: white;
   position: absolute;
   top: 20px;
   width: 90%;
-  height: 650px;
+  height: 640px;
 }
 
 .openAnimation {
-  animation: open-menu .4s linear forwards;
+  animation: open-menu 0.4s linear forwards;
 }
 
 .closeAnimation {
-  animation: close-menu .4s linear forwards;
+  animation: close-menu 0.4s linear forwards;
 }
 
 @keyframes open-menu {
-  0% {width: 0;} /*You can use animation what do You need*/
-  100% {width: 80%;}
+  0% {
+    width: 0;
+  } /*You can use animation what do You need*/
+  100% {
+    width: 80%;
+  }
 }
 
 @keyframes close-menu {
-  0% {width: 80%;}
-  100% {width: 0;}
+  0% {
+    width: 80%;
+  }
+  100% {
+    width: 0;
+  }
 }

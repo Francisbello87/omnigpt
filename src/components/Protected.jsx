@@ -1,19 +1,18 @@
-import React from 'react'
-import { Navigate } from 'react-router-dom'
-import { UserAuth } from '../context/AuthContext'
+import React from "react";
+import { Navigate } from "react-router-dom";
+import { UserAuth } from "../context/AuthContext";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { auth } from "../firebase";
 
-const Protected = ({children}) => {
-    const {user} = UserAuth()
-    // const [ users] = useAuthState(auth);
+const Protected = ({ children }) => {
+  const { user } = UserAuth();
+  let email = localStorage.getItem("email");
+  // const [ users] = useAuthState(auth);
 
-    if(!user) {
-        return(<Navigate to='/' />)
-    }
-  return (
-    children
-  )
-}
+  if (!user) {
+    return <Navigate to="/" />;
+  }
+  return children;
+};
 
-export default Protected
+export default Protected;

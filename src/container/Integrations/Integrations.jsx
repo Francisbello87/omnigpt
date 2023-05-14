@@ -33,7 +33,7 @@ const Integrations = () => {
           </motion.span>{" "}
           to Boost Your Workflow
         </motion.h2>
-        <div className="grid grid-cols-3 gap-6 mt-11">
+        <div className="grid grid-cols-3 gap-6 mt-11 max-w-[1440px]">
           {integrations &&
             integrations.map((integration) => (
               <motion.div
@@ -41,7 +41,7 @@ const Integrations = () => {
                 transition={{ duration: 0.8, ease: "easeInOut" }}
                 whileHover={{ scale: 1.1, border: "3px solid #1FC77E" }}
                 key={integration.id}
-                className="bg-white drop-shadow-lg cursor-pointer text-black p-6 rounded-md"
+                className="bg-white drop-shadow-lg cursor-pointer text-black py-6 px-2 rounded-md"
               >
                 <motion.div className="flex items-center mb-4">
                   <motion.img

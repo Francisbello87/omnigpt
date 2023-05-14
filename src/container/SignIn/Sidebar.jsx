@@ -9,6 +9,7 @@ import { images } from "../../constants";
 
 const Sidebar = () => {
   const [isActive, setIsActive] = useState(false);
+  const ref = useRef(null);
 
   const handleClick = () => {
     ref.current.focus();
@@ -20,7 +21,7 @@ const Sidebar = () => {
   const handleSidebarclose = () => {
     setIsActive(false);
   };
-  const ref = useRef(null);
+
 
   return (
     <motion.div
