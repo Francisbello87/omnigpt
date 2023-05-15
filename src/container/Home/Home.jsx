@@ -4,7 +4,7 @@ import { motion } from "framer-motion";
 
 import InputHints from "react-input-hints";
 import Testimonial from "../Testimonial/Testimonial";
-import {BsCheckCircleFill} from "react-icons/bs"
+import { BsCheckCircleFill } from "react-icons/bs";
 import Integrations from "../Integrations/Integrations";
 
 const Home = () => {
@@ -17,8 +17,26 @@ const Home = () => {
       window.removeEventListener("resize", handleResize);
     };
   }, []);
+
+  const pageVariants = {
+    initial: {
+      opacity: 0,
+    },
+    in: {
+      opacity: 1,
+    },
+    out: {
+      opacity: 0,
+    },
+  };
   return (
-    <div className=" w-full md:w-full text-white px-5 md:px-16 mt-20 lg:mt-28 lg:px-20 ">
+    <motion.div
+      initial="initial"
+      animate="in"
+      exit="out"
+      variants={pageVariants}
+      className=" w-full md:w-full text-white px-5 md:px-16 mt-20 lg:mt-28 lg:px-20 "
+    >
       {width > 1024 ? (
         // Desktop
         <div className="mt-[132px]">
@@ -360,25 +378,30 @@ const Home = () => {
               <div className="text-gray-200 mt-3 text-sm">
                 <p className="text-sm font-Poppins">This includes:</p>
                 <div className="mt-2 font-Poppins  flex ">
-                  <BsCheckCircleFill className="mr-3 mt-1"/>
-                  <p>Use OmniGPT from your <br/> WhatsApp</p>
+                  <BsCheckCircleFill className="mr-3 mt-1" />
+                  <p>
+                    Use OmniGPT from your <br /> WhatsApp
+                  </p>
                 </div>
                 <div className="mt-2 flex font-Poppins  ">
-                  <BsCheckCircleFill className="mr-3 mt-1"/>
+                  <BsCheckCircleFill className="mr-3 mt-1" />
                   <p>Transcribe speech into text</p>
                 </div>
                 <div className="mt-2 flex font-Poppins  ">
-                  <BsCheckCircleFill className="mr-3 mt-1"/>
-                  <p>Download your chat <br/> conversations</p>
+                  <BsCheckCircleFill className="mr-3 mt-1" />
+                  <p>
+                    Download your chat <br /> conversations
+                  </p>
                 </div>
                 <div className="mt-2 flex font-Poppins ">
-                  <BsCheckCircleFill className="mr-3 mt-1"/>
-                  <p>Upload documents to get <br/> better insights</p>
+                  <BsCheckCircleFill className="mr-3 mt-1" />
+                  <p>
+                    Upload documents to get <br /> better insights
+                  </p>
                 </div>
               </div>
             </div>
           </div>
-          
         </div>
       ) : (
         // {/* Mobile & Tablet */}
@@ -557,10 +580,9 @@ const Home = () => {
               />
             </div>
           </div>
-         
         </div>
       )}
-    </div>
+    </motion.div>
   );
 };
 

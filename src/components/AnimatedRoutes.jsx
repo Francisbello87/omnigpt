@@ -6,9 +6,11 @@ import Protected from "./Protected";
 
 const AnimatedRoutes = () => {
   const location = useLocation();
+  // console.log(location);
+
   return (
     <AnimatePresence>
-      <Routes location={location}>
+      <Routes location={location}  key={location.key}>
         <Route path="/" element={<Home />} />
         <Route path="/signin" element={<SignIn />} />
         <Route path="/contact" element={<Contact />} />

@@ -7,11 +7,11 @@ import { getAuth } from "firebase/auth";
 // Your web app's Firebase configuration
 const firebaseConfig = {
   apiKey: "AIzaSyDp7fgFogeW1YpqNm_9Vs3s4bGCTnQuZM0",
-  authDomain: process.env.API_KEY_AUTHDOMAIN,
-  projectId: process.env.API_KEY_PROJECTID,
-  storageBucket: process.env.API_KEY_STORAGE_BUCKET,
-  messagingSenderId: process.env.API_KEY_MESSAGINGSENDERID,
-  appId: process.env.API_KEY_APPID
+  authDomain: "omnigpt-4e225.firebaseapp.com",
+  projectId: "omnigpt-4e225",
+  storageBucket: "omnigpt-4e225.appspot.com",
+  messagingSenderId: "1:243319302267:web:68a6eb7caf22d256ef1ade",
+  appId: "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"
 };
 
 // Initialize Firebase

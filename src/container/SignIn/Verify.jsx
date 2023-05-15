@@ -23,11 +23,21 @@ const Verify = () => {
       user: "me",
       message: "How can I help you today?",
     },
-   
   ]);
 
   const { user, logOut, googleSignIn } = UserAuth();
   const ref = useRef(null);
+  const pageVariants = {
+    initial: {
+      opacity: 0,
+    },
+    in: {
+      opacity: 1,
+    },
+    out: {
+      opacity: 0,
+    },
+  };
 
   const handleAccount = () => {
     setAccount(true);
@@ -81,7 +91,13 @@ const Verify = () => {
     setIsActive((current) => !current);
   };
   return (
-    <div className="w-full verify ">
+    <motion.div
+      initial="initial"
+      animate="in"
+      exit="out"
+      variants={pageVariants}
+      className="w-full verify "
+    >
       <ChatInterfaceMenu />
       <div className="flex h-[90%]">
         <Sidebar />
@@ -231,7 +247,7 @@ const Verify = () => {
           </motion.button>
         </div>
       </div>
-    </div>
+    </motion.div>
   );
 };
 const ChatMessage = ({ message }) => {

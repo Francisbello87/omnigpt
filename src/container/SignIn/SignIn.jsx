@@ -29,8 +29,19 @@ const SignIn = () => {
   const [loginLoading, setLoginLoading] = useState(false);
   const [loginError, setLoginError] = useState("");
   const [width, setWidth] = useState(window.innerWidth);
-
   const [infoMsg, setInfoMsg] = useState("");
+
+  const pageVariants = {
+    initial: {
+      opacity: 0,
+    },
+    in: {
+      opacity: 1,
+    },
+    out: {
+      opacity: 0,
+    },
+  };
 
   const handleGoogleSignIn = async () => {
     try {
@@ -118,7 +129,13 @@ const SignIn = () => {
   };
 
   return (
-    <div className="w-full sign-in mt-0 flex items-center justify-center">
+    <motion.div
+      initial="initial"
+      animate="in"
+      exit="out"
+      variants={pageVariants}
+      className="w-full px-2 sign-in mt-0 flex items-center justify-center"
+    >
       <div className="bg-white w-[100%] lg:w-[45%] drop-shadow-lg shadow-lg flex flex-col items-center justify-center rounded-md p-12 shadow-shadowColor">
         {user?.displayName ? (
           <div className="flex font-Poppins items-center justify-center flex-col">
@@ -217,7 +234,7 @@ const SignIn = () => {
           </div>
         )}
       </div>
-    </div>
+    </motion.div>
   );
 };
 
